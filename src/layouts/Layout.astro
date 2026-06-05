@@ -2,7 +2,6 @@
 const base = import.meta.env.BASE_URL;
 const { title, activePage } = Astro.props;
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +13,7 @@ const { title, activePage } = Astro.props;
 
   <nav>
     <div class="nav-top">
-      <a href="/" class="nav-brand">
+      <a href={base} class="nav-brand">
         <img src={`${base}images/nav/ntu-logo.png`} alt="NTU Logo" class="nav-ntu-logo">
         <span class="nav-divider-v"></span>
         <span>
@@ -25,14 +24,14 @@ const { title, activePage } = Astro.props;
     </div>
     <div class="nav-bar">
       <ul>
-        <li><a href="/" class={activePage === 'about' ? 'active' : ''}>About</a></li>
-        <li><a href="/research" class={activePage === 'research' ? 'active' : ''}>Research</a></li>
-        <li><a href="/publications" class={activePage === 'publications' ? 'active' : ''}>Publications</a></li>
-        <li><a href="/programs" class={activePage === 'programs' ? 'active' : ''}>Programs & Events</a></li>
-        <li><a href="/people" class={activePage === 'people' ? 'active' : ''}>People</a></li>
-        <li><a href="/collaborations" class={activePage === 'collaborations' ? 'active' : ''}>Collaborations</a></li>
-        <li><a href="/resources" class={activePage === 'resources' ? 'active' : ''}>Resources</a></li>
-        <li><a href="/contact" class={activePage === 'contact' ? 'active' : ''}>Contact</a></li>
+        <li><a href={base} class={activePage === 'about' ? 'active' : ''}>About</a></li>
+        <li><a href={`${base}research`} class={activePage === 'research' ? 'active' : ''}>Research</a></li>
+        <li><a href={`${base}publications`} class={activePage === 'publications' ? 'active' : ''}>Publications</a></li>
+        <li><a href={`${base}programs`} class={activePage === 'programs' ? 'active' : ''}>Programs & Events</a></li>
+        <li><a href={`${base}people`} class={activePage === 'people' ? 'active' : ''}>People</a></li>
+        <li><a href={`${base}collaborations`} class={activePage === 'collaborations' ? 'active' : ''}>Collaborations</a></li>
+        <li><a href={`${base}resources`} class={activePage === 'resources' ? 'active' : ''}>Resources</a></li>
+        <li><a href={`${base}contact`} class={activePage === 'contact' ? 'active' : ''}>Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -42,7 +41,7 @@ const { title, activePage } = Astro.props;
   <footer>
     <div class="footer-in">
       <p>© 2026 Korean Studies · Nanyang Technological University, Singapore</p>
-      <a href="/contact">Contact Us</a>
+      <a href={`${base}contact`}>Contact Us</a>
     </div>
   </footer>
 
@@ -50,7 +49,6 @@ const { title, activePage } = Astro.props;
 </html>
 
 <style is:global>
-  /* RESET & BASE */
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --navy: #001e61;
@@ -66,7 +64,6 @@ const { title, activePage } = Astro.props;
   a { text-decoration: none; color: inherit; }
   img { display: block; max-width: 100%; }
 
-  /* NAV TOP */
   nav { background: var(--navy); width: 100%; }
   .nav-top { background: var(--white); border-bottom: 1px solid var(--border); }
   .nav-brand { display: flex; align-items: center; gap: 14px; max-width: 1100px; margin: 0 auto; padding: 0 2rem; height: 88px; }
@@ -75,27 +72,23 @@ const { title, activePage } = Astro.props;
   .nav-logo-main { font-size: 20px; font-weight: 600; color: var(--navy); display: block; }
   .nav-logo-sub { font-size: 12px; color: var(--text-muted); display: block; margin-top: -6px; }
 
-  /* NAV BAR */
   .nav-bar { background: var(--navy); }
   .nav-bar ul { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; list-style: none; }
   .nav-bar a { display: block; height: 56px; line-height: 56px; padding: 0 1.2rem; font-size: 16px; color: rgba(255,255,255,0.75); letter-spacing: 0.02em; border-bottom: 3px solid transparent; transition: color 0.15s, border-color 0.15s; }
   .nav-bar a:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.35); }
   .nav-bar a.active { color: #fff; border-bottom-color: var(--red); }
 
-  /* FOOTER */
-  footer { background: var(--navy); padding: 2rem; margin-top: 0rem; }
+  footer { background: var(--navy); padding: 2rem; margin-top: 0; }
   .footer-in { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
   footer p, footer a { font-size: 13px; color: rgba(255,255,255,0.45); }
   footer a:hover { color: rgba(255,255,255,0.8); }
 
-  /* INNER HERO (其他页面用) */
   .inner-hero { background: var(--navy); padding: 2.5rem 2rem 2rem; }
   .inner-hero-in { max-width: 1100px; margin: 0 auto; }
   .inner-hero h2 { font-size: 1.5rem; font-weight: 600; color: #fff; margin-bottom: 0.4rem; }
   .inner-hero p { font-size: 14px; color: rgba(255,255,255,0.6); max-width: 460px; }
   .inner-tag { font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; font-weight: 600; }
 
-  /* PAGE BODY */
   .page-body { max-width: 860px; margin: 0 auto; padding: 3.5rem 2rem; }
   .page-body-wide { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
   .stub { padding: 3rem 2rem; max-width: 1100px; margin: 0 auto; font-size: 14px; color: var(--text-muted); }
