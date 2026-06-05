@@ -1,6 +1,8 @@
 ---
+const base = import.meta.env.BASE_URL;
 const { title, activePage } = Astro.props;
 ---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,7 @@ const { title, activePage } = Astro.props;
   <nav>
     <div class="nav-top">
       <a href="/" class="nav-brand">
-        <img src="/images/nav/ntu-logo.png" alt="NTU Logo" class="nav-ntu-logo">
+        <img src={`${base}images/nav/ntu-logo.png`} alt="NTU Logo" class="nav-ntu-logo">
         <span class="nav-divider-v"></span>
         <span>
           <span class="nav-logo-main">Korean Studies</span>
