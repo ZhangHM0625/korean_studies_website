@@ -1,17 +1,171 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="About" activePage="about">
+
+  <div class="hero">
+    <img class="hero-img" src="/images/about/about-hero.jpg" alt="Korean Studies Lab">
+    <div class="hero-content">
+      <h1>Korean Studies</h1>
+      <div class="hero-rule"></div>
+      <p>Connecting Korea and Southeast Asia Through Research and Dialogue</p>
+    </div>
+  </div>
+
+<div class="page-body">
+
+    <div class="about-section">
+      <div class="section-divider"><span>Who We Are</span></div>
+      <p class="about-intro">Korean Studies Lab is an interdisciplinary research initiative based at Nanyang Technological University, Singapore. As one of the first initiatives of its kind in Southeast Asia, the Lab supports research, publications, and public programs on contemporary Korea. Building on existing research and ongoing collaborations, the Lab examines how Korea is interpreted, translated, and discussed in different cultural, social, and political contexts.</p>
+    </div>
+
+    <div class="about-section">
+      <div class="section-divider"><span>What We Focus</span></div>
+      <div class="statements">
+        <div class="statement-card">
+          <div class="statement-num">01</div>
+          <h3>Korea's IT Innovation &amp; Digital Society</h3>
+          <p>Examining Korea's technological transformation — digital infrastructure, platform economies, and the social dimensions of a hyperconnected society.</p>
+        </div>
+        <div class="statement-card">
+          <div class="statement-num">02</div>
+          <h3>Contemporary Korean Culture &amp; Korean Wave</h3>
+          <p>Tracing how Korean culture travels, transforms, and is received across Southeast Asia — from popular media to cultural policy and the creative industries.</p>
+        </div>
+        <div class="statement-card">
+          <div class="statement-num">03</div>
+          <h3>Human &amp; Cultural Exchange</h3>
+          <p>Exploring human and cultural ties between Korea and Southeast Asia — migration, education, diplomacy, and the histories of regional entanglement.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <div class="section-divider"><span>Our Mission</span></div>
+      <div class="mission-list">
+        <div class="mission-item">
+          <span class="mission-dash">—</span>
+          <p>Advancing the study of contemporary Korea in Singapore and Southeast Asia</p>
+        </div>
+        <div class="mission-item">
+          <span class="mission-dash">—</span>
+          <p>Supporting research, dialogue, and exchange on Korea in Southeast Asia</p>
+        </div>
+        <div class="mission-item">
+          <span class="mission-dash">—</span>
+          <p>A hub for research and engagement on contemporary Korea in Southeast Asia</p>
+        </div>
+      </div>
+    </div>
+
+	<div class="about-section">
+  <div class="section-divider"><span>Explore</span></div>
+  <div class="explore-grid">
+    <a href="/research" class="explore-card">
+      <h3>Our Research</h3>
+      <p>Explore our current projects and themes on Korea's digital society, cultural circulation, and regional exchange.</p>
+      <span class="explore-more">Learn More →</span>
+    </a>
+    <a href="/people" class="explore-card">
+      <h3>Our People</h3>
+      <p>Meet the faculty, researchers, and collaborators who make up the Korean Studies Lab community.</p>
+      <span class="explore-more">Learn More →</span>
+    </a>
+  </div>
+</div>
+  </div>
+
+</Layout>
+
+<style>
+  /* HERO */
+  .hero {
+    position: relative; width: 100%; height: 620px;
+    overflow: hidden; display: flex; align-items: center;
+    justify-content: center; background: #111;
+  }
+  .hero-img {
+    position: absolute; inset: 0; width: 100%;
+    height: 100%; object-fit: cover; opacity: 0.55;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; padding: 0 2rem;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-content h1 {
+    font-size: 2.8rem; font-weight: 700; color: #fff;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .hero-rule { width: 48px; height: 2px; background: var(--red); margin: 0 auto 1rem; }
+  .hero-content p {
+    font-size: 16px; color: rgba(255,255,255,0.85);
+    white-space: nowrap; line-height: 1.7;
+    margin: 0 auto; letter-spacing: 0.05em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(42px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: ''; flex: 1; height: 0.5px; background: var(--border);
+  }
+  .section-divider span {
+    font-size: 16px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--red);
+    font-weight: 600; white-space: nowrap;
+  }
+
+  /* MISSION DIVIDER override */
+  .mission-divider::before,
+  .mission-divider::after { background: rgba(255,255,255,0.15); }
+  .mission-divider span { color: rgba(255,255,255,0.5); }
+
+  /* ABOUT */
+  .about-section { margin-bottom: 3.5rem; }
+  .about-intro { font-size: 16px; color: var(--text-sec); line-height: 1.9; }
+
+  /* CARDS */
+  .statements { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .statement-card { background: var(--white); border: 0.5px solid var(--border); padding: 1.75rem 1.5rem; }
+  .statement-num { font-size: 12px; letter-spacing: 0.12em; color: var(--red); font-weight: 600; margin-bottom: 0.85rem; }
+  .statement-card h3 { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 0.65rem; line-height: 1.3; }
+  .statement-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  /* MISSION */
+  .mission-band { background: var(--navy); padding: 3.5rem 2rem; }
+  .mission-inner { max-width: 860px; margin: 0 auto; }
+  .mission-list { display: flex; flex-direction: column; gap: 1.25rem; }
+  .mission-item { display: flex; align-items: flex-start; gap: 1rem; }
+  .mission-dash { color: var(--red); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .mission-item p { font-size: 16px; color: var(--text-sec); line-height: 1.4; }
+
+  /* EXPLORE */
+  .explore-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .explore-card {
+    background: var(--white); border: 0.5px solid var(--border);
+    padding: 2rem; display: flex; flex-direction: column;
+    gap: 0.6rem; transition: border-color 0.15s;
+  }
+  .explore-card:hover { border-color: var(--navy); }
+  .explore-card h3 { font-size: 16px; font-weight: 600; color: var(--navy); }
+  .explore-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; flex: 1; }
+  .explore-more {
+    align-self: flex-end;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--red); margin-top: 1rem;
+    transition: letter-spacing 0.15s;
+  }
+  .explore-card:hover .explore-more { letter-spacing: 0.12em; }
+</style>
