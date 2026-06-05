@@ -1,0 +1,286 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+
+const publications = [
+  {
+    year: "2025",
+    papers: [
+      {
+        id: "pub-2025-1", theme: "advertising",
+        title: "Bringing people into the story: How virtual reality journalism affects the feeling of presence",
+        authors: "Lee, S., Kim, T., Lee, K. M., Park, N., & Song, H.",
+        journal: "Digital Journalism.",
+        doi: "10.1080/21670811.2025.2553157",
+        abstract: "Virtual reality (VR) journalism can offer immersive experiences, enhancing the audience's empathy and issue involvement. This paper investigated the effects of VR journalism focusing on two different features of VR: device-focused (HMD) and content format-focused (360° video) by conducting a 3×2 between-subjects experiment (N = 171). Results showed that participants in the 360° video condition experienced a higher level of social presence, which increased their empathic concern toward the characters and led them to be more involved in the videos' topic."
+      }
+    ]
+  },
+  {
+    year: "2024",
+    papers: [
+      {
+        id: "pub-2024-1", theme: "games",
+        title: "Exploring the association between the Proteus effect and intention to play massive multiplayer online role-playing games (MMORPGs)",
+        authors: "Sun, S., Kim, J. H., Lee, K. M., & Nan, D.",
+        journal: "Internet Research, 34(1), 58–78.",
+        doi: "10.1108/INTR-07-2022-0487",
+        abstract: "This study aims to develop an integrated model based on Yee's motivations and the Proteus effect to explore individuals' intentions of playing MMORPGs. Data were gathered via an online survey (n = 441) for players of World of Warcraft. The outcomes reveal that the Proteus effect positively influenced the intentions of the players to play the game via mediations of social, immersion, achievement motivations and enjoyment."
+      },
+      {
+        id: "pub-2024-2", theme: "hci-theory",
+        title: "Replicable Innovation: Bridging Theory and Real-World Applications",
+        authors: "Lee, K. M., Wu, D-Y., Hsu, C-Y., & Cheng, P-W.",
+        journal: "Information Society Studies, 47, pp. 1–15.",
+        url: "https://doi.org/10.29843/JCCIS.202407_(47).0001",
+        abstract: "Dr. Kwan Min Lee underscores the vital link between academic theory and practical application, stressing the importance of a deep understanding of inherent human tendencies and technological form factors to drive forward both research and practical advancements in communication technology."
+      }
+    ]
+  },
+  {
+    year: "2023",
+    papers: [
+      {
+        id: "pub-2023-1", theme: "speech",
+        title: "Voice orientation of conversational interfaces in vehicles",
+        authors: "Lee, K. M., Moon, Y., Park, I., & Lee, J.",
+        journal: "Behaviour & Information Technology.",
+        doi: "10.1080/0144929X.2023.2166870",
+        abstract: "This study investigates efficient user-friendly arrangements of tasks performed by home and car AI agents, and the optimal method to trigger their use. A between-subjects factorial experiment was conducted with three types of AI agent setting and two activation methods. Results indicate that specialist AI agents enhance perceived ease of use and credibility."
+      },
+      {
+        id: "pub-2023-2", theme: "fintech",
+        title: "Fintech agents: Technologies and theories",
+        authors: "Pal, A., Gopi, S., & Lee, K. M.",
+        journal: "Electronics, 12(15), 3301.",
+        doi: "10.3390/electronics12153301",
+        abstract: "This paper provides a comprehensive review of interactive fintech agents from technological and social science perspectives, reviewing major technologies involved in creating fintech and issues related to human-fintech agent interaction."
+      }
+    ]
+  },
+  {
+    year: "2022",
+    papers: [
+      {
+        id: "pub-2022-1", theme: "speech",
+        title: "Polite speech strategies and their impact on drivers' trust in autonomous vehicles",
+        authors: "Lee, J., & Lee, K. M.",
+        journal: "Computers in Human Behavior, 127, 107015.",
+        doi: "10.1016/j.chb.2021.107015",
+        abstract: "Two between-subjects experiments tested the influences of politeness strategies on drivers' perceptions of vehicles. Results indicate that drivers evaluate polite vehicles as more sociable and trustworthy, and they perceive polite instructions as more acceptable."
+      },
+      {
+        id: "pub-2022-2", theme: "healthcare",
+        title: "The digital divide and seeking health information on smartphones in Asia: Survey study of ten countries",
+        authors: "Wang, X., Shi, J., & Lee, K. M.",
+        journal: "Journal of Medical Internet Research, 24(1), e24086.",
+        doi: "10.2196/24086",
+        abstract: "With survey data from 10 Asian countries (N=9086), multilevel regression models assessed the effect of sociodemographic factors, technological factors, and country-level disparities on using smartphones to seek health information."
+      },
+      {
+        id: "pub-2022-3", theme: "games",
+        title: "Cultural differences in digital game experiences: Psychological responses to avatar and game environments",
+        authors: "Lee, K. M., & Sah, Y. J.",
+        journal: "International Journal of Gaming and Computer-Mediated Simulations, 14(1), 1–15.",
+        doi: "10.4018/IJGCMS.313186",
+        abstract: "This study examined how cultural differences in world views and self-construals influence players' digital game experience, including visual attention, avatar identification, sense of agency, and spatial presence."
+      }
+    ]
+  },
+  {
+    year: "2021",
+    papers: [
+      {
+        id: "pub-2021-1", theme: "advertising",
+        title: "Virtual reality advertising with brand experiences",
+        authors: "Song, H., Kim, J., Nguyen, T., Lee, K. M., & Park, N.",
+        journal: "International Journal of Advertising, 40(7), 1096–1114.",
+        doi: "10.1080/02650487.2020.1834210",
+        abstract: "This study examined 360-degree video-based advertising, investigating whether the effect of VR ad varies across media devices and the role of virtual representation of the self (VRS). An experiment (N = 203) was conducted using a 2×3 between-subjects design."
+      }
+    ]
+  }
+];
+
+const themes = [
+  { id: "advertising",  label: "Technologies for Advertising, PR & Journalism" },
+  { id: "games",        label: "Computer Games and Entertainment Technologies" },
+  { id: "hci-theory",  label: "HCI Theories, Concepts and Philosophy" },
+  { id: "speech",       label: "Speech User Interface" },
+  { id: "healthcare",   label: "Healthcare Technology" },
+  { id: "fintech",      label: "Financial Technology" },
+];
+
+const allPapers = publications.flatMap(s => s.papers.map(p => ({ ...p, year: s.year })));
+---
+
+<Layout title="Publications" activePage="publications">
+
+  <div class="pub-hero">
+    <div class="pub-hero-img-wrap">
+      <img src={`${base}images/publications/pub-hero.jpg`} alt="Publications" class="pub-hero-img">
+    </div>
+    <div class="pub-hero-card">
+      <h1>Publications</h1>
+      <p>Research outputs from the Korean Studies Lab</p>
+      <div class="pub-hero-rule"></div>
+    </div>
+  </div>
+
+  <div class="page-body-wide">
+
+    <div class="view-toggle">
+      <button class="toggle-btn active" id="timelineBtn">By Year</button>
+      <button class="toggle-btn" id="themeBtn">By Theme</button>
+    </div>
+
+    <div id="timeline-view">
+      {publications.map(section => (
+        <div class="year-section">
+          <div class="year-heading">{section.year}</div>
+          {section.papers.map(paper => (
+            <div class="paper-item">
+              <div class="paper-title">{paper.title}</div>
+              <div class="paper-meta">{paper.authors} ({section.year}). <em>{paper.journal}</em></div>
+              <div class="paper-links">
+                {paper.abstract && (
+                  <button class="paper-btn abstract-btn" data-target={`abs-${paper.id}`}>[Abstract]</button>
+                )}
+                {(paper.doi || paper.url) && (
+                  <a class="paper-btn" href={paper.doi ? `https://doi.org/${paper.doi}` : paper.url} target="_blank" rel="noopener">[Paper]</a>
+                )}
+              </div>
+              {paper.abstract && (
+                <div class="abstract-content" id={`abs-${paper.id}`}>{paper.abstract}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <div id="theme-view" style="display:none">
+      {themes.map(theme => {
+        const papers = allPapers.filter(p => p.theme === theme.id);
+        if (papers.length === 0) return null;
+        return (
+          <div class="year-section">
+            <div class="year-heading theme-label">{theme.label}</div>
+            {papers.map(paper => (
+              <div class="paper-item">
+                <div class="paper-title">{paper.title}</div>
+                <div class="paper-meta">{paper.authors} ({paper.year}). <em>{paper.journal}</em></div>
+                <div class="paper-links">
+                  {paper.abstract && (
+                    <button class="paper-btn abstract-btn" data-target={`abs-t-${paper.id}`}>[Abstract]</button>
+                  )}
+                  {(paper.doi || paper.url) && (
+                    <a class="paper-btn" href={paper.doi ? `https://doi.org/${paper.doi}` : paper.url} target="_blank" rel="noopener">[Paper]</a>
+                  )}
+                </div>
+                {paper.abstract && (
+                  <div class="abstract-content" id={`abs-t-${paper.id}`}>{paper.abstract}</div>
+                )}
+              </div>
+            ))}
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+
+</Layout>
+
+<style>
+  .pub-hero {
+    position: relative; width: 100%; height: 500px;
+    overflow: visible; background: #1a1a1a;
+  }
+  .pub-hero-img-wrap { position: absolute; inset: 0; overflow: hidden; }
+  .pub-hero-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+  .pub-hero-card {
+    position: absolute; bottom: -2.5rem; left: 6rem;
+    background: var(--white); padding: 1.25rem 3rem 0;
+    width: 600px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); z-index: 10;
+  }
+  .pub-hero-card h1 { font-size: 2rem; font-weight: 600; color: var(--text); margin-bottom: 1rem; }
+  .pub-hero-card p { font-size: 17px; color: var(--text-muted); }
+  .pub-hero-rule { width: 100%; height: 3px; background: var(--red); margin-top: 1.5rem; }
+
+  .page-body-wide { max-width: 900px; margin: 0 auto; padding: 6rem 2rem 4rem; }
+
+  .view-toggle { display: flex; gap: 0.5rem; margin-bottom: 3rem; }
+  .toggle-btn {
+    padding: 7px 22px; font-size: 13px; font-weight: 600;
+    border: 1px solid var(--border); background: var(--white);
+    color: var(--text-muted); cursor: pointer; letter-spacing: 0.04em;
+    transition: all 0.15s;
+  }
+  .toggle-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .toggle-btn:hover:not(.active) { border-color: var(--red); color: var(--red); }
+
+  .year-section { margin-bottom: 3.5rem; }
+  .year-heading {
+    font-size: 2rem; font-weight: 700; color: var(--navy);
+    padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
+    margin-bottom: 1.75rem;
+  }
+  .theme-label { font-size: 1.6rem; }
+
+  .paper-item { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 0.5px solid var(--border); }
+  .paper-item:last-child { border-bottom: none; }
+  .paper-title { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; line-height: 1.5; }
+  .paper-meta { font-size: 16px; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.75rem; }
+
+  .paper-links { display: flex; gap: 1rem; margin-bottom: 0.5rem; }
+  .paper-btn {
+    font-size: 15px; font-weight: 700;
+    background: none; border: none; padding: 0;
+    color: var(--text); cursor: pointer;
+    text-decoration: none; font-family: inherit;
+    transition: color 0.15s;
+  }
+  .paper-btn:hover { color: var(--red); }
+
+  .abstract-content {
+    display: none;
+    font-size: 0.95rem; line-height: 1.7;
+    color: var(--text-sec);
+    background: #f8fafc;
+    padding: 15px 20px;
+    border-left: 2px solid var(--text-muted);
+    margin-top: 8px;
+  }
+  .abstract-content.open { display: block; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.abstract-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.getAttribute('data-target') || '');
+        target?.classList.toggle('open');
+      });
+    });
+
+    const timelineBtn = document.getElementById('timelineBtn') as HTMLElement;
+    const themeBtn = document.getElementById('themeBtn') as HTMLElement;
+    const timelineView = document.getElementById('timeline-view') as HTMLElement;
+    const themeView = document.getElementById('theme-view') as HTMLElement;
+
+    timelineBtn.addEventListener('click', () => {
+      timelineView.style.display = 'block';
+      themeView.style.display = 'none';
+      timelineBtn.classList.add('active');
+      themeBtn.classList.remove('active');
+    });
+
+    themeBtn.addEventListener('click', () => {
+      timelineView.style.display = 'none';
+      themeView.style.display = 'block';
+      themeBtn.classList.add('active');
+      timelineBtn.classList.remove('active');
+    });
+  });
+</script>

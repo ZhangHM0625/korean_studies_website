@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="People" activePage="people">
+
+  <div class="people-hero">
+    <div class="people-hero-img-wrap">
+      <img src={`${base}images/people/people-hero.jpg`} alt="People" class="people-hero-img">
+    </div>
+    <div class="people-hero-card">
+      <h1>People</h1>
+      <p>Get to know our dynamic intellectual community</p>
+      <div class="people-hero-rule"></div>
+    </div>
+  </div>
+
+  <div class="page-body-wide">
+
+    <div class="people-section">
+      <div class="section-divider"><span>Leadership</span></div>
+      <div class="leadership-grid">
+        <div class="leader-card" id="leader-0">
+          <div class="leader-avatar">
+            <div class="avatar-fallback"><span>?</span></div>
+          </div>
+          <div class="leader-name">Director Name</div>
+          <div class="leader-title">Director, Korean Studies Lab</div>
+          <button class="expand-icon-btn" aria-label="Expand">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+              <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <div class="leader-bio">
+            <div class="leader-bio-inner">
+              <p class="bio-intro">Wait to be updated.</p>
+              <div class="bio-contact">
+                <div class="contact-item">Address placeholder, NTU Singapore 639798</div>
+                <div class="contact-item"><a href="mailto:director@ntu.edu.sg">director@ntu.edu.sg</a></div>
+                <div class="contact-item">+65 0000 0000</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="people-section">
+      <div class="section-divider"><span>Staff & Researchers</span></div>
+      <div class="staff-list">
+        {[1,2,3,4].map((i) => (
+          <div class="person-card" id={`staff-${i}`}>
+            <div class="person-main">
+              <div class="person-avatar">
+                <div class="avatar-fallback"><span>?</span></div>
+              </div>
+              <div class="person-info">
+                <div class="person-name">Researcher Name {i}</div>
+                <div class="person-title">Position Title, Korean Studies Lab</div>
+              </div>
+              <button class="expand-icon-btn" aria-label="Expand">
+                <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="person-bio">
+              <div class="bio-inner">
+                <p class="bio-intro">Wait to be updated.</p>
+                <div class="bio-contact">
+                  <div class="contact-item">Address placeholder, NTU Singapore 639798</div>
+                  <div class="contact-item"><a href={`mailto:researcher${i}@ntu.edu.sg`}>researcher{i}@ntu.edu.sg</a></div>
+                  <div class="contact-item">+65 0000 0000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+
+</Layout>
+
+<style>
+  .people-hero {
+    position: relative; width: 100%; height: 500px;
+    overflow: visible; background: #1a1a1a;
+  }
+  .people-hero-img-wrap { position: absolute; inset: 0; overflow: hidden; }
+  .people-hero-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+  .people-hero-card {
+    position: absolute; bottom: -2.5rem; left: 6rem;
+    background: var(--white); padding: 1.25rem 3rem 0;
+    width: 600px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); z-index: 10;
+  }
+  .people-hero-card h1 { font-size: 2rem; font-weight: 600; color: var(--text); margin-bottom: 1rem; }
+  .people-hero-card p { font-size: 17px; color: var(--text-muted); }
+  .people-hero-rule { width: 100%; height: 3px; background: var(--red); margin-top: 1.5rem; }
+
+  .page-body-wide { max-width: 1100px; margin: 0 auto; padding: 6rem 2rem 3rem; }
+  .people-section { margin-bottom: 4rem; margin-top: 1rem; }
+
+  .section-divider { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; }
+  .section-divider::before, .section-divider::after { content: ''; width: 40px; height: 1.5px; background: var(--red); flex: none; }
+  .section-divider span { font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); font-weight: 600; white-space: nowrap; }
+
+  .expand-icon-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--navy); padding: 4px;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s; flex-shrink: 0;
+  }
+  .leader-card.open .expand-icon-btn,
+  .person-card.open .expand-icon-btn { transform: rotate(180deg); }
+
+  /* LEADERSHIP */
+  .leadership-grid { display: flex; justify-content: center; }
+  .leader-card { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; }
+  .leader-avatar {
+    width: 200px; height: 200px; border-radius: 50%;
+    overflow: hidden; margin-bottom: 1.25rem;
+    background: #d0d5e0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .leader-avatar .avatar-fallback span { font-size: 3rem; }
+  .leader-name { font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
+  .leader-title { font-size: 14px; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .leader-bio { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; width: 100%; }
+  .leader-bio.open { max-height: 400px; }
+  .leader-bio-inner {
+    display: flex; flex-direction: column;
+    gap: 0.75rem; padding: 1rem 2rem 1.5rem;
+    text-align: left; max-width: 600px; margin: 0 auto;
+  }
+
+  /* STAFF */
+  .staff-list { display: flex; flex-direction: column; }
+  .person-card { border-bottom: 1px solid var(--border); }
+  .person-main {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 1.5rem 1rem; cursor: pointer;
+  }
+  .person-main:hover { background: var(--white); }
+  .person-avatar {
+    width: 110px; height: 110px; border-radius: 50%;
+    overflow: hidden; flex-shrink: 0; background: #d0d5e0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .person-info { flex: 1; }
+  .person-name { font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
+  .person-title { font-size: 14px; color: var(--text-muted); }
+  .person-bio { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .person-bio.open { max-height: 400px; }
+  .bio-inner {
+    display: flex; flex-direction: column;
+    gap: 0.75rem; padding: 0.75rem 1rem 1.5rem calc(110px + 1.5rem + 1rem);
+    text-align: left; background: var(--bg);
+  }
+
+  /* SHARED */
+  .avatar-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+  .avatar-fallback span { font-size: 2.2rem; color: #fff; font-weight: 300; }
+  .bio-intro { font-size: 14px; color: var(--text-sec); line-height: 1.85; }
+  .bio-contact { display: flex; flex-direction: column; gap: 0.4rem; }
+  .contact-item { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .contact-item a { color: var(--red); }
+  .contact-item a:hover { text-decoration: underline; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.person-main').forEach((main) => {
+      main.addEventListener('click', () => {
+        const card = main.closest('.person-card') as HTMLElement;
+        const bio = card?.querySelector('.person-bio') as HTMLElement;
+        card?.classList.toggle('open');
+        bio?.classList.toggle('open');
+      });
+    });
+
+    const leaderBtn = document.querySelector('.leader-card .expand-icon-btn');
+    leaderBtn?.addEventListener('click', () => {
+      const card = leaderBtn.closest('.leader-card') as HTMLElement;
+      const bio = card?.querySelector('.leader-bio') as HTMLElement;
+      card?.classList.toggle('open');
+      bio?.classList.toggle('open');
+    });
+  });
+</script>
